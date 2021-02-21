@@ -43,7 +43,7 @@ my_pi = (4.0*global_inside) / (sz * local_points)
 end_time = MPI.Wtime()
 
 if (rank == 0):
-  print("pi is %g" % my_pi)
+  print("pi is approximated as %g" % my_pi)
   print("real pi is %g diff %g" % \
         (4.0*math.atan(1.0), 4.0*math.atan(1.0) - my_pi))
   print("Took %g ms" % ((end_time - start_time)*1e3))

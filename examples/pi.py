@@ -19,7 +19,7 @@ if (rank == 0):
   my_seed[:] = seed
 MPI.COMM_WORLD.Bcast(my_seed, 0)
 
-random.seed(my_seed[0] + rank)
+random.seed(int(my_seed[0]) + rank)
 
 # how many points on each rank?
 local_points = int(total_points / sz)

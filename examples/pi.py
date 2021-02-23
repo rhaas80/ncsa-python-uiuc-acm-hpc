@@ -23,6 +23,7 @@ random.seed(int(my_seed[0]) + rank)
 
 # how many points on each rank?
 local_points = int(total_points / sz)
+total_points = local_points * sz
 
 start_time = MPI.Wtime()
 
@@ -38,7 +39,7 @@ for point in range(0,local_points):
 # combine all rank results
 global_inside = np.empty_like(local_inside)
 MPI.COMM_WORLD.Reduce(local_inside, global_inside, MPI.SUM, 0)
-my_pi = (4.0*global_inside) / (sz * local_points)
+my_pi = 4.0*global_inside / total_points
 
 end_time = MPI.Wtime()
 
